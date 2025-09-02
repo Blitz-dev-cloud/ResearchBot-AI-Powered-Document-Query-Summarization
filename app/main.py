@@ -1,25 +1,19 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware  # Add this import
 from . import auth, chat, docs, embeddings
 
 app = FastAPI(title="Research Bot API")
 
-# Define allowed origins explicitly
-origins = [
-    "https://research-bot-ai-powered-document-qu.vercel.app",  # Vercel frontend
-    "http://localhost:5173",  # Vite local dev
-]
-
-# CORS middleware
+# Add CORS middleware - ADD THIS SECTION
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # Allows all origins for now
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
 )
 
-# Routers
+# Register routers (your existing code)
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(chat.router, prefix="/chat", tags=["Chat"])
 app.include_router(docs.router, prefix="/docs", tags=["Documents"])
