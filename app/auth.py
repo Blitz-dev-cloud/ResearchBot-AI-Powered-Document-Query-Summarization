@@ -8,7 +8,7 @@ router = APIRouter()
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # JWT configuration
-SECRET_KEY = "your-secret-key-change-this-in-production"
+SECRET_KEY = "33c5bd97323af04aa276f90f2fba225d1341d13190551c5cbad90f0be73c45a2"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
